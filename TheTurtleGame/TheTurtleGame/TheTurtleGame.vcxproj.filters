@@ -26,5 +26,8 @@
     <ClInclude Include="Turtle.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Definitions.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

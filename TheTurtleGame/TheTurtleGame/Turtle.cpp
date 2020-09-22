@@ -1,19 +1,29 @@
 #include "Turtle.hpp"
+#include "Definitions.hpp"
 
-Turtle::Turtle(std::string texture, sf::Vector2f position, sf::Keyboard::Key upKey, sf::Keyboard::Key downKey, sf::Keyboard::Key leftKey, sf::Keyboard::Key rightKey)
+Turtle::Turtle(std::string texture, sf::Vector2f position, sf::Keyboard::Key upKey, sf::Keyboard::Key downKey, sf::Keyboard::Key leftKey, sf::Keyboard::Key rightKey, sf::View view)
 {
     if (!_texture.loadFromFile(texture))
     {
         exit(EXIT_FAILURE);
     }
+
+    Position = position;
     _sprite.setTexture(_texture);
-    _sprite.setPosition(position);
+    _sprite.setPosition(Position);
 
     _upKey = upKey;
     _downKey = downKey;
     _leftKey = leftKey;
     _rightKey = rightKey;
     Position = _sprite.getPosition();
+
+    View = view;
+    View.setCenter(Position);
+}
+
+double inline lerp(double v0, double v1, double t) {
+    return (1 - t) * v0 + t * v1;
 }
 
 void Turtle::tryMove(double elapsedTime)
@@ -24,18 +34,22 @@ void Turtle::tryMove(double elapsedTime)
     bool right = sf::Keyboard::isKeyPressed(_rightKey);
 
     if (up) {
-        _sprite.setPosition(_sprite.getPosition() + sf::Vector2f(0, -_speed * elapsedTime));
+        Position.y -= _speed * elapsedTime;
     } else if (down) {
-        _sprite.setPosition(_sprite.getPosition() + sf::Vector2f(0, _speed * elapsedTime));
+        Position.y += _speed * elapsedTime;
     }
 
     if (left) {
-        _sprite.setPosition(_sprite.getPosition() + sf::Vector2f(-_speed * elapsedTime, 0));
+        Position.x -= _speed * elapsedTime;
     } else if (right) {
-        _sprite.setPosition(_sprite.getPosition() + sf::Vector2f(_speed * elapsedTime, 0));
+        Position.x += _speed * elapsedTime;
     }
+        
+    _sprite.setPosition(Position);
 
-    Position = _sprite.getPosition();
+    double viewX = lerp(View.getCenter().x, Position.x, 0.003 * elapsedTime);
+    double viewY = lerp(View.getCenter().y, Position.y, 0.003 * elapsedTime);
+    View.setCenter(sf::Vector2f(viewX, viewY));
 }
 
 void Turtle::draw(sf::RenderTarget& window, sf::RenderStates states) const
