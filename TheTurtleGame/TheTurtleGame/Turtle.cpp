@@ -19,7 +19,9 @@ Turtle::Turtle(std::string texture, sf::Vector2f position, sf::Keyboard::Key upK
     Position = _sprite.getPosition();
 
     View = view;
-    View.setCenter(Position);
+    float centreX = Position.x + (_texture.getSize().x / 2.f);
+    float centreY = Position.y + (_texture.getSize().y / 2.f);
+    View.setCenter(sf::Vector2f(centreX, centreY));
 }
 
 double inline lerp(double v0, double v1, double t) {
@@ -28,6 +30,7 @@ double inline lerp(double v0, double v1, double t) {
 
 void Turtle::tryMove(double elapsedTime)
 {
+    // update sprite position
     bool up = sf::Keyboard::isKeyPressed(_upKey);
     bool down = sf::Keyboard::isKeyPressed(_downKey);
     bool left = sf::Keyboard::isKeyPressed(_leftKey);
@@ -41,14 +44,19 @@ void Turtle::tryMove(double elapsedTime)
 
     if (left) {
         Position.x -= _speed * elapsedTime;
+        _sprite.setTextureRect(sf::IntRect(_texture.getSize().x, 0, -1 * (_texture.getSize().x), _texture.getSize().y));
     } else if (right) {
         Position.x += _speed * elapsedTime;
+        _sprite.setTextureRect(sf::IntRect(0, 0, _texture.getSize().x, _texture.getSize().y));
     }
         
     _sprite.setPosition(Position);
 
-    double viewX = lerp(View.getCenter().x, Position.x, 0.003 * elapsedTime);
-    double viewY = lerp(View.getCenter().y, Position.y, 0.003 * elapsedTime);
+    // update camera position
+    float centreX = Position.x + (_texture.getSize().x / 2.f);
+    float centreY = Position.y + (_texture.getSize().y / 2.f);
+    double viewX = lerp(View.getCenter().x, centreX, 0.003 * elapsedTime);
+    double viewY = lerp(View.getCenter().y, centreY, 0.003 * elapsedTime);
     View.setCenter(sf::Vector2f(viewX, viewY));
 }
 

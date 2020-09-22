@@ -22,8 +22,8 @@ int main()
     player2View.setSize(sf::Vector2f(window.getSize().x / (PIXEL_SIZE * 2), window.getSize().y / PIXEL_SIZE));
     player2View.setViewport(sf::FloatRect(0.5f, 0.f, 0.5f, 1.f));
 
-    Turtle turtle1 = Turtle("TestTurtle.png", sf::Vector2f(0, 0), sf::Keyboard::W, sf::Keyboard::S, sf::Keyboard::A, sf::Keyboard::D, player1View);
-    Turtle turtle2 = Turtle("TestTurtle.png", sf::Vector2f(50, 0), sf::Keyboard::Up, sf::Keyboard::Down, sf::Keyboard::Left, sf::Keyboard::Right, player2View);
+    Turtle turtle1 = Turtle("Turtle1.png", sf::Vector2f(0, 0), sf::Keyboard::W, sf::Keyboard::S, sf::Keyboard::A, sf::Keyboard::D, player1View);
+    Turtle turtle2 = Turtle("Turtle2.png", sf::Vector2f(50, 0), sf::Keyboard::Up, sf::Keyboard::Down, sf::Keyboard::Left, sf::Keyboard::Right, player2View);
 
     while (window.isOpen())
     {
@@ -37,6 +37,8 @@ int main()
         }
 
         double elapsedTime = clock.restart().asMilliseconds();
+        //std::cout << "FPS: " << 1000 / elapsedTime << std::endl;
+
         turtle1.tryMove(elapsedTime);
         turtle2.tryMove(elapsedTime);
         window.clear(sf::Color(80, 120, 180));

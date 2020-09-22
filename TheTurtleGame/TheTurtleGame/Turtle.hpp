@@ -20,6 +20,6 @@ private:
 	sf::Keyboard::Key _leftKey;
 	sf::Keyboard::Key _rightKey;
 
-	double _speed = 0.1; // px per frame
+	double _speed = 0.15; // px per frame
 };
 
