@@ -1,6 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+#include "Turtle.hpp"
+
 int main()
 {
     sf::RenderWindow window(sf::VideoMode::getDesktopMode(), "The Turtle Game", sf::Style::Fullscreen);
@@ -12,14 +14,10 @@ int main()
     view.setSize(sf::Vector2f(screenWidth, screenHeight));
     window.setView(view);
 
-    sf::Texture turtleTexture;
-    sf::Sprite turtleSprite;
+    sf::Clock clock;
 
-    if (!turtleTexture.loadFromFile("TestTurtle.png"))
-    {
-        return 0;
-    }
-    turtleSprite.setTexture(turtleTexture);
+    Turtle turtle1 = Turtle("TestTurtle.png", sf::Vector2f(0, 0), sf::Keyboard::Up, sf::Keyboard::Down, sf::Keyboard::Left, sf::Keyboard::Right);
+    Turtle turtle2 = Turtle("TestTurtle.png", sf::Vector2f(50, 0), sf::Keyboard::W, sf::Keyboard::S, sf::Keyboard::A, sf::Keyboard::D);
 
     while (window.isOpen())
     {
@@ -32,8 +30,13 @@ int main()
                 window.close();
         }
 
+        double elapsedTime = clock.restart().asMilliseconds();
+        turtle1.tryMove(elapsedTime);
+        turtle2.tryMove(elapsedTime);
+
         window.clear(sf::Color(80, 120, 180));
-        window.draw(turtleSprite);
+        window.draw(turtle1);
+        window.draw(turtle2);
         window.display();
     }
 
