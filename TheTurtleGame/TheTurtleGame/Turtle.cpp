@@ -13,6 +13,7 @@ Turtle::Turtle(std::string texture, sf::Vector2f position, sf::Keyboard::Key upK
     _downKey = downKey;
     _leftKey = leftKey;
     _rightKey = rightKey;
+    Position = _sprite.getPosition();
 }
 
 void Turtle::tryMove(double elapsedTime)
@@ -33,6 +34,8 @@ void Turtle::tryMove(double elapsedTime)
     } else if (right) {
         _sprite.setPosition(_sprite.getPosition() + sf::Vector2f(_speed * elapsedTime, 0));
     }
+
+    Position = _sprite.getPosition();
 }
 
 void Turtle::draw(sf::RenderTarget& window, sf::RenderStates states) const

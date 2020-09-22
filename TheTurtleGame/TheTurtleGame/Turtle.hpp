@@ -6,6 +6,7 @@ class Turtle : public sf::Drawable
 {
 public:
 	Turtle(std::string texture, sf::Vector2f position, sf::Keyboard::Key upKey, sf::Keyboard::Key downKey, sf::Keyboard::Key leftKey, sf::Keyboard::Key rightKey);
+	sf::Vector2f Position;
 
 	void tryMove(double elapsedTime);
 	void draw(sf::RenderTarget& window, sf::RenderStates states = sf::RenderStates::Default) const override;
