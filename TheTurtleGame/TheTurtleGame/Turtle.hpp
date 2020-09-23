@@ -5,7 +5,7 @@
 class Turtle : public sf::Drawable
 {
 public:
-	Turtle(std::string texture, sf::Vector2f position, sf::Keyboard::Key upKey, sf::Keyboard::Key downKey, sf::Keyboard::Key leftKey, sf::Keyboard::Key rightKey, sf::View view);
+	Turtle(const std::string& texture, sf::Vector2f position, sf::Keyboard::Key upKey, sf::Keyboard::Key downKey, sf::Keyboard::Key leftKey, sf::Keyboard::Key rightKey, sf::View view);
 	sf::View View;
 	sf::Vector2f Position;
 

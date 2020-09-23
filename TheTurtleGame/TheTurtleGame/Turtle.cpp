@@ -1,7 +1,7 @@
 #include "Turtle.hpp"
 #include "Definitions.hpp"
 
-Turtle::Turtle(std::string texture, sf::Vector2f position, sf::Keyboard::Key upKey, sf::Keyboard::Key downKey, sf::Keyboard::Key leftKey, sf::Keyboard::Key rightKey, sf::View view)
+Turtle::Turtle(const std::string& texture, sf::Vector2f position, sf::Keyboard::Key upKey, sf::Keyboard::Key downKey, sf::Keyboard::Key leftKey, sf::Keyboard::Key rightKey, sf::View view)
 {
     if (!_texture.loadFromFile(texture))
     {
@@ -24,7 +24,8 @@ Turtle::Turtle(std::string texture, sf::Vector2f position, sf::Keyboard::Key upK
     View.setCenter(sf::Vector2f(centreX, centreY));
 }
 
-double inline lerp(double v0, double v1, double t) {
+double inline lerp(double v0, double v1, double t)
+{
     return (1 - t) * v0 + t * v1;
 }
 
@@ -36,16 +37,22 @@ void Turtle::tryMove(double elapsedTime)
     bool left = sf::Keyboard::isKeyPressed(_leftKey);
     bool right = sf::Keyboard::isKeyPressed(_rightKey);
 
-    if (up) {
+    if (up)
+    {
         Position.y -= _speed * elapsedTime;
-    } else if (down) {
+    }
+    else if (down)
+    {
         Position.y += _speed * elapsedTime;
     }
 
-    if (left) {
+    if (left)
+    {
         Position.x -= _speed * elapsedTime;
         _sprite.setTextureRect(sf::IntRect(_texture.getSize().x, 0, -1 * (_texture.getSize().x), _texture.getSize().y));
-    } else if (right) {
+    }
+    else if (right)
+    {
         Position.x += _speed * elapsedTime;
         _sprite.setTextureRect(sf::IntRect(0, 0, _texture.getSize().x, _texture.getSize().y));
     }

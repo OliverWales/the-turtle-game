@@ -2,6 +2,8 @@
 #include <iostream>
 
 #include "Definitions.hpp"
+#include "MapGenerator.hpp"
+#include "TileMap.hpp"
 #include "Turtle.hpp"
 
 int main()
@@ -22,8 +24,11 @@ int main()
     player2View.setSize(sf::Vector2f(window.getSize().x / (PIXEL_SIZE * 2), window.getSize().y / PIXEL_SIZE));
     player2View.setViewport(sf::FloatRect(0.5f, 0.f, 0.5f, 1.f));
 
-    Turtle turtle1 = Turtle("Turtle1.png", sf::Vector2f(0, 0), sf::Keyboard::W, sf::Keyboard::S, sf::Keyboard::A, sf::Keyboard::D, player1View);
-    Turtle turtle2 = Turtle("Turtle2.png", sf::Vector2f(50, 0), sf::Keyboard::Up, sf::Keyboard::Down, sf::Keyboard::Left, sf::Keyboard::Right, player2View);
+    Turtle turtle1 = Turtle("Turtle1.png", sf::Vector2f(150, 150), sf::Keyboard::W, sf::Keyboard::S, sf::Keyboard::A, sf::Keyboard::D, player1View);
+    Turtle turtle2 = Turtle("Turtle2.png", sf::Vector2f(250, 150), sf::Keyboard::Up, sf::Keyboard::Down, sf::Keyboard::Left, sf::Keyboard::Right, player2View);
+
+    int* map = MapGenerator::generate<64, 64>(0.5, 2);
+    TileMap level = TileMap("TileSet.png", sf::Vector2u(32, 32), map, 64, 64);
 
     while (window.isOpen())
     {
@@ -46,10 +51,12 @@ int main()
         window.setView(turtle1.View);
         window.draw(turtle1);
         window.draw(turtle2);
+        window.draw(level);
 
         window.setView(turtle2.View);
         window.draw(turtle1);
         window.draw(turtle2);
+        window.draw(level);
 
         window.setView(uiView);
         window.draw(divider);
