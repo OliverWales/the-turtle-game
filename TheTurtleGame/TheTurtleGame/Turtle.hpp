@@ -19,6 +19,10 @@ private:
 	sf::Keyboard::Key _downKey;
 	sf::Keyboard::Key _leftKey;
 	sf::Keyboard::Key _rightKey;
+	float _viewMinX;
+	float _viewMinY;
+	float _viewMaxX;
+	float _viewMaxY;
 
 	double _speed = 0.15; // px per frame
 };

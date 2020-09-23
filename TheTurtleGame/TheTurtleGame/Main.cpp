@@ -2,14 +2,27 @@
 #include <iostream>
 
 #include "Definitions.hpp"
-#include "MapGenerator.hpp"
-#include "TileMap.hpp"
+#include "MapGenerator.hpp";
+#include "TileMap.hpp";
+#include "MiniMap.hpp";
 #include "Turtle.hpp"
 
 int main()
 {
     sf::RenderWindow window(sf::VideoMode::getFullscreenModes()[0], "The Turtle Game", sf::Style::Fullscreen);
     sf::Clock clock;
+    srand(0);
+
+    int* map = MapGenerator::generate<LEVEL_WIDTH + 1, LEVEL_HEIGHT + 1>(0.5, 3);
+    int* tiles = MapGenerator::marchingSquares<LEVEL_WIDTH, LEVEL_HEIGHT>(map);
+    TileMap tileMap = TileMap::TileMap(TILE_SET, sf::Vector2u(TILE_SIZE, TILE_SIZE), tiles, LEVEL_WIDTH, LEVEL_HEIGHT);
+    MiniMap<LEVEL_WIDTH + 1, LEVEL_HEIGHT + 1> miniMap = MiniMap<LEVEL_WIDTH + 1, LEVEL_HEIGHT + 1>(map);
+    miniMap.setPosition(sf::Vector2f(-LEVEL_WIDTH / 2, (window.getSize().y / PIXEL_SIZE / 2) - LEVEL_HEIGHT - 1));
+    sf::RectangleShape mmTurtle1 = sf::RectangleShape(sf::Vector2f(1, 1));
+    mmTurtle1.setFillColor(sf::Color(132, 229, 12));
+    sf::RectangleShape mmTurtle2 = sf::RectangleShape(sf::Vector2f(1, 1));
+    mmTurtle2.setFillColor(sf::Color(255, 89, 194));
+
 
     sf::View uiView = sf::View(sf::Vector2f(0, 0), sf::Vector2f(window.getSize().x / PIXEL_SIZE, window.getSize().y / PIXEL_SIZE));
     sf::RectangleShape divider = sf::RectangleShape(sf::Vector2f(2, window.getSize().y / 4));
@@ -27,9 +40,6 @@ int main()
     Turtle turtle1 = Turtle("Turtle1.png", sf::Vector2f(150, 150), sf::Keyboard::W, sf::Keyboard::S, sf::Keyboard::A, sf::Keyboard::D, player1View);
     Turtle turtle2 = Turtle("Turtle2.png", sf::Vector2f(250, 150), sf::Keyboard::Up, sf::Keyboard::Down, sf::Keyboard::Left, sf::Keyboard::Right, player2View);
 
-    int* map = MapGenerator::generate<64, 64>(0.5, 2);
-    TileMap level = TileMap("TileSet.png", sf::Vector2u(32, 32), map, 64, 64);
-
     while (window.isOpen())
     {
         sf::Event event;
@@ -46,20 +56,26 @@ int main()
 
         turtle1.tryMove(elapsedTime);
         turtle2.tryMove(elapsedTime);
+
+        mmTurtle1.setPosition(sf::Vector2f(miniMap.getPosition().x + (turtle1.Position.x + 37/2) / TILE_SIZE, miniMap.getPosition().y + (turtle1.Position.y + 20/2) / TILE_SIZE));
+        mmTurtle2.setPosition(sf::Vector2f(miniMap.getPosition().x + (turtle2.Position.x + 37/2) / TILE_SIZE, miniMap.getPosition().y + (turtle2.Position.y + 20/2) / TILE_SIZE));
         window.clear(sf::Color(80, 120, 180));
 
         window.setView(turtle1.View);
         window.draw(turtle1);
         window.draw(turtle2);
-        window.draw(level);
+        window.draw(tileMap);
 
         window.setView(turtle2.View);
         window.draw(turtle1);
         window.draw(turtle2);
-        window.draw(level);
+        window.draw(tileMap);
 
         window.setView(uiView);
         window.draw(divider);
+        window.draw(miniMap);
+        window.draw(mmTurtle1);
+        window.draw(mmTurtle2);
 
         window.display();
     }

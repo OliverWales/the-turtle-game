@@ -3,39 +3,30 @@
 class MapGenerator
 {
 public:
-    // generate random tilemap of given size
+    // generate random level of given size
     template<int WIDTH, int HEIGHT>
     static int* generate(const float fill, const int smooths)
     {
         // generate random noise
-        int* input = seed<WIDTH + 1, HEIGHT + 1>(fill);
-
-        std::cout << "SEED:" << std::endl;
-        print<WIDTH + 1, HEIGHT + 1>(input);
-        std::cout << std::endl;
+        int* input = seed<WIDTH, HEIGHT>(fill);
 
         // smooth noise
-        int* smoothed = new int[(WIDTH + 1) * (HEIGHT + 1)];
+        int* smoothed = new int[WIDTH * HEIGHT];
 
         for (int i = 0; i < smooths; i++)
         {
-            smoothed = smooth<WIDTH + 1, HEIGHT + 1>(input);
+            smoothed = smooth<WIDTH, HEIGHT>(input);
 
             if (i < smooths - 1) {
                 // copy result back to input
-                std::copy(&smoothed[0], &smoothed[0] + (WIDTH + 1) * (HEIGHT + 1), &input[0]);
+                std::copy(&smoothed[0], &smoothed[0] + WIDTH * HEIGHT, &input[0]);
             }
         }
 
-        std::cout << "SMOOTHED:" << std::endl;
-        print<WIDTH + 1, HEIGHT + 1>(smoothed);
-        std::cout << std::endl;
-
-        // marching squares
-        return marchingSquares<WIDTH, HEIGHT>(smoothed);
+        return smoothed;
     }
 
-    // generate tilemap from input
+    // generate tilemap from level
     template<int WIDTH, int HEIGHT>
     static int* marchingSquares(int* input)
     {
@@ -57,7 +48,7 @@ public:
         return output;
     }
 
-    // print array (for debugging)
+    // print level (for debugging)
     template<int WIDTH, int HEIGHT>
     static void print(int* array)
     {

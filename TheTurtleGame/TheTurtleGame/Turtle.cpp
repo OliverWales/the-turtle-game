@@ -1,5 +1,6 @@
 #include "Turtle.hpp"
 #include "Definitions.hpp"
+#include "Maths.hpp"
 
 Turtle::Turtle(const std::string& texture, sf::Vector2f position, sf::Keyboard::Key upKey, sf::Keyboard::Key downKey, sf::Keyboard::Key leftKey, sf::Keyboard::Key rightKey, sf::View view)
 {
@@ -19,14 +20,14 @@ Turtle::Turtle(const std::string& texture, sf::Vector2f position, sf::Keyboard::
     Position = _sprite.getPosition();
 
     View = view;
-    float centreX = Position.x + (_texture.getSize().x / 2.f);
-    float centreY = Position.y + (_texture.getSize().y / 2.f);
-    View.setCenter(sf::Vector2f(centreX, centreY));
-}
+    _viewMinX = View.getSize().x / 2;
+    _viewMinY = View.getSize().y / 2;
+    _viewMaxX = LEVEL_WIDTH * TILE_SIZE - _viewMinX;
+    _viewMaxY = LEVEL_HEIGHT * TILE_SIZE - _viewMinY;
 
-double inline lerp(double v0, double v1, double t)
-{
-    return (1 - t) * v0 + t * v1;
+    float centreX = clamp(Position.x + (_texture.getSize().x / 2.f), _viewMinX, _viewMaxX);
+    float centreY = clamp(Position.y + (_texture.getSize().y / 2.f), _viewMinY, _viewMaxY);
+    View.setCenter(sf::Vector2f(centreX, centreY));
 }
 
 void Turtle::tryMove(double elapsedTime)
@@ -60,8 +61,8 @@ void Turtle::tryMove(double elapsedTime)
     _sprite.setPosition(Position);
 
     // update camera position
-    float centreX = Position.x + (_texture.getSize().x / 2.f);
-    float centreY = Position.y + (_texture.getSize().y / 2.f);
+    float centreX = clamp(Position.x + (_texture.getSize().x / 2.f), _viewMinX, _viewMaxX);
+    float centreY = clamp(Position.y + (_texture.getSize().y / 2.f), _viewMinY, _viewMaxY);
     double viewX = lerp(View.getCenter().x, centreX, 0.003 * elapsedTime);
     double viewY = lerp(View.getCenter().y, centreY, 0.003 * elapsedTime);
     View.setCenter(sf::Vector2f(viewX, viewY));

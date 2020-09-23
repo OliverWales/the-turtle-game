@@ -145,12 +145,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MiniMap.cpp" />
     <ClCompile Include="TileMap.cpp" />
     <ClCompile Include="Turtle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Definitions.hpp" />
     <ClInclude Include="MapGenerator.hpp" />
+    <ClInclude Include="Maths.hpp" />
+    <ClInclude Include="MiniMap.hpp" />
     <ClInclude Include="TileMap.hpp" />
     <ClInclude Include="Turtle.hpp" />
   </ItemGroup>
