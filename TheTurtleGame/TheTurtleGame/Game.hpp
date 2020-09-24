@@ -8,8 +8,8 @@ struct GameData
 	sf::RenderWindow window;
 	StateMachine machine;
 
-	int player1Turtle;
-	int player2Turtle;
+	int player1Turtle = 0;
+	int player2Turtle = 1;
 };
 
 typedef std::shared_ptr<GameData> GameDataRef;

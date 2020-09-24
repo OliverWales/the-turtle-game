@@ -3,10 +3,13 @@
 #include "StateMachine.hpp"
 #include "SplashState.hpp"
 
+#include "SetupState.hpp"
+
 Game::Game(std::string title)
 {
 	_data->window.create(sf::VideoMode::getFullscreenModes()[0], title, sf::Style::Fullscreen);
-	_data->machine.addState(StateRef(new SplashState(_data)));
+	//_data->machine.addState(StateRef(new SplashState(_data)));
+	_data->machine.addState(StateRef(new SetupState(_data)));
 	run();
 }
 

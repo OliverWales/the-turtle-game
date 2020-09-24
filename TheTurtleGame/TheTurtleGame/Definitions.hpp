@@ -29,3 +29,8 @@ static int MAIN_MENU_MAP[160] = {
 	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1,
 	1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1,
 };
+
+#define SETUP_BUTTONS "SetupButtons.png"
+#define SETUP_TITLES "SetupTitles.png"
+#define TURTLE_SELECTOR "TurtleSelector.png"
+#define KEYBOARD_BUTTONS "KeyboardButtons.png"

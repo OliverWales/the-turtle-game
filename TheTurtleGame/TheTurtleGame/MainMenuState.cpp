@@ -4,6 +4,7 @@
 #include "MainMenuState.hpp"
 #include "MapGenerator.hpp"
 #include "TileMap.hpp"
+#include "SetupState.hpp"
 
 #include <iostream>
 
@@ -55,7 +56,7 @@ void MainMenuState::update(float dt)
 		{
 			if (_play.isHovered(_data->window))
 			{
-				std::cout << "Play" << std::endl;
+				_data->machine.replaceState(StateRef(new SetupState(_data)));
 			}
 
 			if (_credits.isHovered(_data->window))

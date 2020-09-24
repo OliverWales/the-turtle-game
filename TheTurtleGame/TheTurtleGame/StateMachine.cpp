@@ -1,7 +1,5 @@
 #include "StateMachine.hpp"
 
-#include <iostream>
-
 void StateMachine::addState(StateRef newState) {
 	_isAdding = true;
 	_isReplacing = false;
@@ -31,7 +29,6 @@ void StateMachine::processStateChanges()
 		if (!_states.empty())
 		{
 			_states.pop();
-			std::cout << "State removed" << std::endl;
 		}
 		_isRemoving = false;
 	}
@@ -45,14 +42,12 @@ void StateMachine::processStateChanges()
 
 		// set new current state
 		_states.push(std::move(_newState));
-		std::cout << "State replaced" << std::endl;
 		_isReplacing = false;
 	}
 	else if (_isAdding)
 	{
 		// set new current state
 		_states.push(std::move(_newState));
-		std::cout << "State added" << std::endl;
 		_isAdding = false;
 	}
 }
