@@ -144,12 +144,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MiniMap.cpp" />
     <ClCompile Include="TileMap.cpp" />
     <ClCompile Include="Turtle.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Button.hpp" />
     <ClInclude Include="Definitions.hpp" />
     <ClInclude Include="MapGenerator.hpp" />
     <ClInclude Include="Maths.hpp" />
