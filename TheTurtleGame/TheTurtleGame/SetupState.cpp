@@ -5,6 +5,7 @@
 #include "MapGenerator.hpp"
 #include "TileMap.hpp"
 #include "MainMenuState.hpp"
+#include "GameState.hpp"
 
 #include <iostream>
 
@@ -113,7 +114,7 @@ void SetupState::update(float dt)
 			{
 				_data->player1Turtle = _p1TurtleSelector.getIndex();
 				_data->player2Turtle = _p2TurtleSelector.getIndex();
-				std::cout << "Start" << std::endl;
+				_data->machine.replaceState(StateRef(new GameState(_data)));
 			}
 
 			if (_p1Left.isHovered(_data->window))

@@ -66,7 +66,6 @@ void MainMenuState::update(float dt)
 
 			if (_exit.isHovered(_data->window))
 			{
-				std::cout << "Exit" << std::endl;
 				_data->window.close();
 			}
 		}

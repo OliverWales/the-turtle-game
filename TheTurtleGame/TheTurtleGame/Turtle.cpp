@@ -2,23 +2,28 @@
 #include "Definitions.hpp"
 #include "Maths.hpp"
 
-Turtle::Turtle(const std::string& texture, sf::Vector2f position, sf::Keyboard::Key upKey, sf::Keyboard::Key downKey, sf::Keyboard::Key leftKey, sf::Keyboard::Key rightKey, sf::View view)
+void Turtle::setTexture(sf::Texture& texture)
 {
-    if (!_texture.loadFromFile(texture))
-    {
-        exit(EXIT_FAILURE);
-    }
+    _texture = texture;
+    _sprite.setTexture(texture);
+}
 
+void Turtle::setPosition(sf::Vector2f position)
+{
     Position = position;
-    _sprite.setTexture(_texture);
     _sprite.setPosition(Position);
+}
 
+void Turtle::setKeys(sf::Keyboard::Key upKey, sf::Keyboard::Key downKey, sf::Keyboard::Key leftKey, sf::Keyboard::Key rightKey)
+{
     _upKey = upKey;
     _downKey = downKey;
     _leftKey = leftKey;
     _rightKey = rightKey;
-    Position = _sprite.getPosition();
+}
 
+void Turtle::setView(sf::View view)
+{
     View = view;
     _viewMinX = View.getSize().x / 2;
     _viewMinY = View.getSize().y / 2;

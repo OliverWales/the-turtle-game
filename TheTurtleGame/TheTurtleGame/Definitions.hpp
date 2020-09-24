@@ -34,3 +34,5 @@ static int MAIN_MENU_MAP[160] = {
 #define SETUP_TITLES "SetupTitles.png"
 #define TURTLE_SELECTOR "TurtleSelector.png"
 #define KEYBOARD_BUTTONS "KeyboardButtons.png"
+
+#define GAME_BUTTONS "GameButtons.png"
