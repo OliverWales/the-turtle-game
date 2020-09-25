@@ -8,7 +8,12 @@ class MiniMap : public sf::Drawable, public sf::Transformable
 {
 public:
     MiniMap() = default;
-    MiniMap(int* map)
+
+    void setTexture(sf::Texture& texture) {
+        _texture = texture;
+    }
+
+    void setMap(int* map)
     {
         sf::Uint8* pixels = new sf::Uint8[WIDTH * HEIGHT * 4];
 
@@ -39,10 +44,24 @@ public:
         _background.setFillColor(sf::Color(0, 0, 0, 127));
     }
 
+    void setPlayerColours(sf::Color p1, sf::Color p2)
+    {
+        _player1.setFillColor(p1);
+        _player2.setFillColor(p2);
+    }
+
+    void setPlayerPositions(sf::Vector2f p1, sf::Vector2f p2)
+    {
+        _player1.setPosition(sf::Vector2f(_sprite.getPosition().x + (p1.x + 37 / 2) / TILE_SIZE, _sprite.getPosition().y + (p1.y + 20 / 2) / TILE_SIZE));
+        _player2.setPosition(sf::Vector2f(_sprite.getPosition().x + (p2.x + 37 / 2) / TILE_SIZE, _sprite.getPosition().y + (p2.y + 20 / 2) / TILE_SIZE));
+    }
+
     void draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
         target.draw(_background, states);
         target.draw(_sprite, states);
+        target.draw(_player1, states);
+        target.draw(_player2, states);
     }
 
     void setPosition(sf::Vector2f position) {
@@ -58,5 +77,7 @@ private:
     sf::Sprite _sprite;
     sf::Texture _texture;
     sf::RectangleShape _background;
+    sf::RectangleShape _player1 = sf::RectangleShape(sf::Vector2f(1, 1));
+    sf::RectangleShape _player2 = sf::RectangleShape(sf::Vector2f(1, 1));
 };
 

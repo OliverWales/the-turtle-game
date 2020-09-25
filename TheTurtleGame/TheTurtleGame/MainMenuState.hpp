@@ -17,12 +17,15 @@ private:
 	GameDataRef _data;
 
 	sf::View _uiView;
+
+	sf::Texture _titleTexture;
+	sf::Sprite _title;
+
 	sf::Texture _buttonsTexture;
 	Button _play;
 	Button _credits;
 	Button _exit;
-	sf::Texture _titleTexture;
-	sf::Sprite _title;
+
 	int* _backgroundMap;
 	TileMap _backgroundTiles;
 };

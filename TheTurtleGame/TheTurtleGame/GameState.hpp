@@ -5,6 +5,7 @@
 #include "TileMap.hpp"
 #include "Turtle.hpp"
 #include "Button.hpp"
+#include "MiniMap.hpp"
 
 class GameState : public State
 {
@@ -23,6 +24,8 @@ private:
 	int* _map;
 	int* _tiles;
 	TileMap _tileMap;
+	sf::Texture _miniMapTexture;
+	MiniMap<LEVEL_WIDTH + 1, LEVEL_HEIGHT + 1> _miniMap;
 
 	sf::Texture _p1TurtleTexture;
 	sf::Texture _p2TurtleTexture;

@@ -38,6 +38,13 @@ GameState::GameState(GameDataRef data) : _data(data)
     _divider.setPosition(sf::Vector2f(-1, -_divider.getSize().y / 2));
     _divider.setFillColor(sf::Color(0, 0, 0, 127));
 
+    // minimap
+    _miniMap = MiniMap<LEVEL_WIDTH + 1, LEVEL_HEIGHT + 1>();
+    _miniMap.setTexture(_miniMapTexture);
+    _miniMap.setMap(_map);
+    _miniMap.setPosition(sf::Vector2f(-LEVEL_WIDTH / 2, (_data->window.getSize().y / PIXEL_SIZE / 2) - LEVEL_HEIGHT - 1));
+    _miniMap.setPlayerColours(*PLAYER_COLOURS[_data->player1Turtle], *PLAYER_COLOURS[_data->player2Turtle]);
+
     // turtles
     if (!_p1TurtleTexture.loadFromFile("Turtle" + std::to_string(_data->player1Turtle) + ".png"))
     {
@@ -59,6 +66,8 @@ GameState::GameState(GameDataRef data) : _data(data)
     _p2Turtle.setKeys(sf::Keyboard::Up, sf::Keyboard::Down, sf::Keyboard::Left, sf::Keyboard::Right);
     _p2Turtle.setView(_p2View);
     _p2Turtle.faceLeft();
+
+    _miniMap.setPlayerPositions(_p1Turtle.Position, _p2Turtle.Position);
 }
 
 void GameState::update(float dt)
@@ -87,6 +96,7 @@ void GameState::update(float dt)
 
     _p1Turtle.tryMove(dt);
     _p2Turtle.tryMove(dt);
+    _miniMap.setPlayerPositions(_p1Turtle.Position, _p2Turtle.Position);
 
     _home.update(_data->window);
     _pause.update(_data->window);
@@ -106,22 +116,17 @@ void GameState::draw()
     _data->window.draw(_p2Turtle);
     _data->window.draw(_p1Turtle);
     _data->window.draw(_tileMap);
-    //_data->window.draw(_tileMap);
 
     _data->window.setView(_p2Turtle.View);
     _data->window.draw(_p1Turtle);
     _data->window.draw(_p2Turtle);
     _data->window.draw(_tileMap);
-    //_data->window.draw(_tileMap);
 
     _data->window.setView(_uiView);
-    //_data->window.draw(divider);
-    //_data->window.draw(miniMap);
-    //_data->window.draw(mmTurtle1);
-    //_data->window.draw(mmTurtle2);
+    _data->window.draw(_divider);
+    _data->window.draw(_miniMap);
     _data->window.draw(_home);
     _data->window.draw(_pause);
-    _data->window.draw(_divider);
 
     _data->window.display();
 }

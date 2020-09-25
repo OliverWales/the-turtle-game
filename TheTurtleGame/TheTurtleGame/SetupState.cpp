@@ -33,6 +33,11 @@ SetupState::SetupState(GameDataRef data) : _data(data)
 		exit(EXIT_FAILURE);
 	}
 
+	// background
+	_backgroundMap = MapGenerator::marchingSquares<15, 9>(SETUP_MAP);
+	_backgroundTiles = TileMap::TileMap(TILE_SET, sf::Vector2u(TILE_SIZE, TILE_SIZE), _backgroundMap, 15, 9);
+	_backgroundTiles.setPosition(sf::Vector2f(-240, -135));
+
 	// back
 	_back.setTexture(_buttonsTexture, sf::Vector2i(0, 0), sf::Vector2i(74, 28));
 	_back.setPosition(sf::Vector2i(-74 / 2, -120));
@@ -173,6 +178,7 @@ void SetupState::draw()
 	_data->window.setView(_view);
 
 	_data->window.clear(BACKGROUND_COLOUR);
+	_data->window.draw(_backgroundTiles);
 
 	_data->window.draw(_back);
 

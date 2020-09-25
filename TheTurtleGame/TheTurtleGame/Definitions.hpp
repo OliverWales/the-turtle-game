@@ -36,4 +36,26 @@ static int MAIN_MENU_MAP[160] = {
 #define TURTLE_SELECTOR "TurtleSelector.png"
 #define KEYBOARD_BUTTONS "KeyboardButtons.png"
 
+static int SETUP_MAP[160] = {
+	1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1,
+	1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
+	1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
+	1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
+	1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
+	1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,
+	1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,
+	1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1,
+	1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+	1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+};
+
 #define GAME_BUTTONS "GameButtons.png"
+
+#include <SFML/Graphics.hpp>
+
+static sf::Color* PLAYER_COLOURS[4] = {
+	new sf::Color(132, 255, 12),
+	new sf::Color(255, 89, 194),
+	new sf::Color(255, 0, 0),
+	new sf::Color(137, 201, 238)
+};

@@ -5,6 +5,7 @@
 #include "Button.hpp"
 #include "ItemSelector.hpp"
 #include "Keypad.hpp"
+#include "TileMap.hpp"
 
 class SetupState : public State
 {
@@ -41,5 +42,8 @@ private:
 	sf::Texture _turtleSelectorTexture;
 	ItemSelector<4> _p1TurtleSelector;
 	ItemSelector<4> _p2TurtleSelector;
+
+	int* _backgroundMap;
+	TileMap _backgroundTiles;
 };
 
