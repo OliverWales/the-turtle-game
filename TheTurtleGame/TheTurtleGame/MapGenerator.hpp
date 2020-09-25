@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 class MapGenerator
 {
 public:
@@ -63,10 +65,47 @@ public:
     }
 
     // check collision with tile
-    bool collides(int tile, int x, int y)
-    {
-        // TODO
-        return false;
+    static bool collides(int tile, sf::Vector2f offset) {
+        float x = offset.x;
+        float y = offset.y;
+
+        switch (tile)
+        {
+        case 0:
+            return false;
+        case 1:
+            return (y >= TILE_SIZE / 2 + x);
+        case 2:
+            return (y >= TILE_SIZE * 3 / 2 - x);
+        case 3:
+            return (y >= TILE_SIZE / 2);
+        case 4:
+            return (y <= x - TILE_SIZE / 2);
+        case 5:
+            return (y >= TILE_SIZE / 2 - x && y <= TILE_SIZE * 3 / 2 - x);
+        case 6:
+            return (x >= TILE_SIZE / 2);
+        case 7:
+            return (y >= TILE_SIZE / 2 - x);
+        case 8:
+            return (y <= TILE_SIZE / 2 - x);
+        case 9:
+            return (x <= TILE_SIZE / 2);
+        case 10:
+            return (y <= x + TILE_SIZE / 2 && y >= x - TILE_SIZE / 2);
+        case 11:
+            return (y >= x - TILE_SIZE / 2);
+        case 12:
+            return (y <= TILE_SIZE / 2);
+        case 13:
+            return (y <= TILE_SIZE * 3 / 2 - x);
+        case 14:
+            return (y <= x + TILE_SIZE / 2);
+        case 15:
+            return true;
+        default:
+            return true;
+        }
     }
 
 private:

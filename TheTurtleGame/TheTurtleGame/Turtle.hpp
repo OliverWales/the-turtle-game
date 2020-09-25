@@ -14,7 +14,7 @@ public:
 	sf::View View;
 	sf::Vector2f Position;
 
-	void tryMove(double elapsedTime);
+	void tryMove(double dt, int* tiles);
 	void faceLeft();
 	void faceRight();
 	void stepAnimation();
@@ -40,5 +40,6 @@ private:
 	double _speed = 0.15; // px per frame
 
 	void setUVs();
+	bool collides(sf::Vector2f position, int* tiles);
 };
 

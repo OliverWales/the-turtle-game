@@ -7,6 +7,8 @@
 
 GameState::GameState(GameDataRef data) : _data(data)
 {
+    _debug.setFillColor(sf::Color::Red);
+
     // generate level
     srand(0);
     _map = MapGenerator::generate<LEVEL_WIDTH + 1, LEVEL_HEIGHT + 1>(0.47, 4);
@@ -94,8 +96,8 @@ void GameState::update(float dt)
         }
     }
 
-    _p1Turtle.tryMove(dt);
-    _p2Turtle.tryMove(dt);
+    _p1Turtle.tryMove(dt, _tiles);
+    _p2Turtle.tryMove(dt, _tiles);
     _miniMap.setPlayerPositions(_p1Turtle.Position, _p2Turtle.Position);
 
     _home.update(_data->window);

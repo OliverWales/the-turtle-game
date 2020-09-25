@@ -37,4 +37,6 @@ private:
 	Button _pause;
 
 	sf::RectangleShape _divider;
+
+	sf::RectangleShape _debug = sf::RectangleShape(sf::Vector2f(1, 1));
 };
