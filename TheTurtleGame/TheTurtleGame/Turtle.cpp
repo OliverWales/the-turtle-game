@@ -46,40 +46,190 @@ void Turtle::tryMove(double dt, int* tiles)
 
     _moving = false;
     sf::Vector2f newPosition = Position;
-    if (up)
-    {
-        newPosition.y -= _speed * dt;
-        _moving = true;
-    }
-    else if (down)
-    {
-        newPosition.y += _speed * dt;
-        _moving = true;
-    }
-
     if (left)
     {
-        newPosition.x -= _speed * dt;
         faceLeft();
-        _moving = true;
+
+        if (up)
+        {
+            // if can move left + up, move left + up
+            // elif can move left, move left
+            // elif can move up, move up
+            if (!collides(sf::Vector2f(Position.x - _speed * dt, Position.y - _speed * dt), tiles))
+            {
+                Position = sf::Vector2f(Position.x - _speed * dt, Position.y - _speed * dt);
+                _moving = true;
+            }
+            else if (!collides(sf::Vector2f(Position.x - _speed * dt, Position.y), tiles))
+            {
+                Position = sf::Vector2f(Position.x - _speed * dt, Position.y);
+                _moving = true;
+            }
+            else if (!collides(sf::Vector2f(Position.x, Position.y - _speed * dt), tiles))
+            {
+                Position = sf::Vector2f(Position.x, Position.y - _speed * dt);
+                _moving = true;
+            }
+        }
+        else if (down)
+        {
+            // if can move left + down, move left + down
+            // elif can move left, move left
+            // elif can move down, move down
+            if (!collides(sf::Vector2f(Position.x - _speed * dt, Position.y + _speed * dt), tiles))
+            {
+                Position = sf::Vector2f(Position.x - _speed * dt, Position.y + _speed * dt);
+                _moving = true;
+            }
+            else if (!collides(sf::Vector2f(Position.x - _speed * dt, Position.y), tiles))
+            {
+                Position = sf::Vector2f(Position.x - _speed * dt, Position.y);
+                _moving = true;
+            }
+            else if (!collides(sf::Vector2f(Position.x, Position.y + _speed * dt), tiles))
+            {
+                Position = sf::Vector2f(Position.x, Position.y + _speed * dt);
+                _moving = true;
+            }
+        }
+        else 
+        {
+            // if can move left, move left
+            // elif can move left + up, move left + up
+            // elif can move left + down, move left + down
+            if (!collides(sf::Vector2f(Position.x - _speed * dt, Position.y), tiles))
+            {
+                Position = sf::Vector2f(Position.x - _speed * dt, Position.y);
+                _moving = true;
+            }
+            else if (!collides(sf::Vector2f(Position.x - _speed * dt, Position.y - _speed * dt), tiles))
+            {
+                Position = sf::Vector2f(Position.x - _speed * dt, Position.y - _speed * dt);
+                _moving = true;
+            }
+            else if (!collides(sf::Vector2f(Position.x - _speed * dt, Position.y + _speed * dt), tiles))
+            {
+                Position = sf::Vector2f(Position.x - _speed * dt, Position.y + _speed * dt);
+                _moving = true;
+            }
+        }
     }
     else if (right)
     {
-        newPosition.x += _speed * dt;
         faceRight();
-        _moving = true;
-    }
-    
-    if (_moving) {
-        if (!collides(newPosition, tiles))
+
+        if (up)
         {
-            Position = newPosition;
-            _sprite.setPosition(Position);
+            // if can move right + up, move right + up
+            // elif can move right, move right
+            // elif can move up, move up
+            if (!collides(sf::Vector2f(Position.x + _speed * dt, Position.y - _speed * dt), tiles))
+            {
+                Position = sf::Vector2f(Position.x + _speed * dt, Position.y - _speed * dt);
+                _moving = true;
+            }
+            else if (!collides(sf::Vector2f(Position.x + _speed * dt, Position.y), tiles))
+            {
+                Position = sf::Vector2f(Position.x + _speed * dt, Position.y);
+                _moving = true;
+            }
+            else if (!collides(sf::Vector2f(Position.x, Position.y - _speed * dt), tiles))
+            {
+                Position = sf::Vector2f(Position.x, Position.y - _speed * dt);
+                _moving = true;
+            }
+        }
+        else if (down)
+        {
+            // if can move right + down, move right + down
+            // elif can move right, move right
+            // elif can move down, move down
+            if (!collides(sf::Vector2f(Position.x + _speed * dt, Position.y + _speed * dt), tiles))
+            {
+                Position = sf::Vector2f(Position.x + _speed * dt, Position.y + _speed * dt);
+                _moving = true;
+            }
+            else if (!collides(sf::Vector2f(Position.x + _speed * dt, Position.y), tiles))
+            {
+                Position = sf::Vector2f(Position.x + _speed * dt, Position.y);
+                _moving = true;
+            }
+            else if (!collides(sf::Vector2f(Position.x, Position.y + _speed * dt), tiles))
+            {
+                Position = sf::Vector2f(Position.x, Position.y + _speed * dt);
+                _moving = true;
+            }
         }
         else
         {
-            _moving = false;
+            // if can move right, move right
+            // elif can move right + up, move right + up
+            // elif can move right + down, move right + down
+            if (!collides(sf::Vector2f(Position.x + _speed * dt, Position.y), tiles))
+            {
+                Position = sf::Vector2f(Position.x + _speed * dt, Position.y);
+                _moving = true;
+            }
+            else if (!collides(sf::Vector2f(Position.x + _speed * dt, Position.y - _speed * dt), tiles))
+            {
+                Position = sf::Vector2f(Position.x + _speed * dt, Position.y - _speed * dt);
+                _moving = true;
+            }
+            else if (!collides(sf::Vector2f(Position.x + _speed * dt, Position.y + _speed * dt), tiles))
+            {
+                Position = sf::Vector2f(Position.x + _speed * dt, Position.y + _speed * dt);
+                _moving = true;
+            }
         }
+    }
+    else
+    {
+        if (up)
+        {
+            // if can move up, move up
+            // elif can move left + up, move left + up
+            // elif can move right + up, move right + up
+            if (!collides(sf::Vector2f(Position.x, Position.y - _speed * dt), tiles))
+            {
+                Position = sf::Vector2f(Position.x, Position.y - _speed * dt);
+                _moving = true;
+            }
+            else if (!collides(sf::Vector2f(Position.x - _speed * dt, Position.y - _speed * dt), tiles))
+            {
+                Position = sf::Vector2f(Position.x - _speed * dt, Position.y - _speed * dt);
+                _moving = true;
+            }
+            else if (!collides(sf::Vector2f(Position.x + _speed * dt, Position.y - _speed * dt), tiles))
+            {
+                Position = sf::Vector2f(Position.x + _speed * dt, Position.y - _speed * dt);
+                _moving = true;
+            }
+        }
+        else if (down)
+        {
+            // if can move down, move down
+            // elif can move left + down, move left + down
+            // elif can move right + down, move right + down
+            if (!collides(sf::Vector2f(Position.x, Position.y + _speed * dt), tiles))
+            {
+                Position = sf::Vector2f(Position.x, Position.y + _speed * dt);
+                _moving = true;
+            }
+            else if (!collides(sf::Vector2f(Position.x - _speed * dt, Position.y + _speed * dt), tiles))
+            {
+                Position = sf::Vector2f(Position.x - _speed * dt, Position.y + _speed * dt);
+                _moving = true;
+            }
+            else if (!collides(sf::Vector2f(Position.x + _speed * dt, Position.y + _speed * dt), tiles))
+            {
+                Position = sf::Vector2f(Position.x + _speed * dt, Position.y + _speed * dt);
+                _moving = true;
+            }
+        }
+    }
+    
+    if (_moving) {
+        _sprite.setPosition(Position);
     }
 
     // update camera position
@@ -156,6 +306,10 @@ bool Turtle::collides(sf::Vector2f position, int* tiles)
     int topLeftTile = getTile(position);
     sf::Vector2f topLeftOffset = getOffset(position);
 
+    sf::Vector2f topMiddle = sf::Vector2f(position.x + sizeX / 2, position.y);
+    int topMiddleTile = getTile(topMiddle);
+    sf::Vector2f topMiddleOffset = getOffset(topMiddle);
+
     sf::Vector2f topRight = sf::Vector2f(position.x + sizeX, position.y);
     int topRightTile = getTile(topRight);
     sf::Vector2f topRightOffset = getOffset(topRight);
@@ -164,13 +318,19 @@ bool Turtle::collides(sf::Vector2f position, int* tiles)
     int bottomLeftTile = getTile(bottomLeft);
     sf::Vector2f bottomLeftOffset = getOffset(bottomLeft);
 
+    sf::Vector2f bottomMiddle = sf::Vector2f(position.x + sizeX / 2, position.y + sizeY);
+    int bottomMiddleTile = getTile(bottomMiddle);
+    sf::Vector2f bottomMiddleOffset = getOffset(bottomMiddle);
+
     sf::Vector2f bottomRight = sf::Vector2f(position.x + sizeX, position.y + sizeY);
     int bottomRightTile = getTile(bottomRight);
     sf::Vector2f bottomRightOffset = getOffset(bottomRight);
 
     return MapGenerator::collides(tiles[topLeftTile], topLeftOffset)
+        || MapGenerator::collides(tiles[topMiddleTile], topMiddleOffset)
         || MapGenerator::collides(tiles[topRightTile], topRightOffset)
         || MapGenerator::collides(tiles[bottomLeftTile], bottomLeftOffset)
+        || MapGenerator::collides(tiles[bottomMiddleTile], bottomMiddleOffset)
         || MapGenerator::collides(tiles[bottomRightTile], bottomRightOffset);
 
 }

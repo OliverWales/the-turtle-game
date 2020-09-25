@@ -12,7 +12,7 @@
 #define LEVEL_HEIGHT 50
 
 #define SPLASH_SCREEN "SplashScreen.png"
-#define SPLASH_SCREEN_TIME 1000
+#define SPLASH_SCREEN_TIME 1500
 
 // Main menu screen
 #define MAIN_MENU_BUTTONS "MainMenuButtons.png"
