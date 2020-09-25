@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "Definitions.hpp"
 
 template<int WIDTH, int HEIGHT>
 class MiniMap : public sf::Drawable, public sf::Transformable
@@ -15,9 +16,9 @@ public:
         {
             if (map[i] == 0) // water
             {
-                pixels[4 * i] = 80;
-                pixels[4 * i + 1] = 120;
-                pixels[4 * i + 2] = 180;
+                pixels[4 * i] = BACKGROUND_COLOUR.r;
+                pixels[4 * i + 1] = BACKGROUND_COLOUR.g;
+                pixels[4 * i + 2] = BACKGROUND_COLOUR.b;
                 pixels[4 * i + 3] = 255;
             }
             else
