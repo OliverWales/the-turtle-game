@@ -1,12 +1,10 @@
 #include "MainMenuState.hpp"
 
 #include "Definitions.hpp"
-#include "MainMenuState.hpp"
 #include "MapGenerator.hpp"
 #include "TileMap.hpp"
+#include "CreditsState.hpp"
 #include "SetupState.hpp"
-
-#include <iostream>
 
 MainMenuState::MainMenuState(GameDataRef data) : _data(data)
 {
@@ -61,7 +59,7 @@ void MainMenuState::update(float dt)
 
 			if (_credits.isHovered(_data->window))
 			{
-				std::cout << "Credits" << std::endl;
+				_data->machine.replaceState(StateRef(new CreditsState(_data)));
 			}
 
 			if (_exit.isHovered(_data->window))
