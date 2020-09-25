@@ -2,8 +2,8 @@
 
 void Button::setTexture(sf::Texture& texture, sf::Vector2i uv, sf::Vector2i size)
 {
-	this->_texture = texture;
-	this->_button.setTexture(this->_texture);
+	_texture = texture;
+	_button.setTexture(_texture);
 
 	// set texture coords
 	_normal = { uv.x + (0 * size.x), uv.y, size.x, size.y };
