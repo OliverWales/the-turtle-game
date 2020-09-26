@@ -4,8 +4,10 @@
 #include "Game.hpp"
 #include "TileMap.hpp"
 #include "Turtle.hpp"
+#include "Coin.hpp"
 #include "Button.hpp"
 #include "MiniMap.hpp"
+#include <vector>
 
 class GameState : public State
 {
@@ -38,5 +40,10 @@ private:
 
 	sf::RectangleShape _divider;
 
-	sf::RectangleShape _debug = sf::RectangleShape(sf::Vector2f(1, 1));
+	sf::Texture _coinTexture;
+	std::vector<Coin> _coins;
+	int _p1Coins;
+	int _p2Coins;
+
+	void replaceCoin(Coin &coin);
 };

@@ -51,6 +51,9 @@
     <ClCompile Include="CreditsState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Coin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Turtle.hpp">
@@ -102,6 +105,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CreditsState.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Coin.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

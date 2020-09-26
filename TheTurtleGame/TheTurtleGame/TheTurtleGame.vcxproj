@@ -145,6 +145,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Coin.cpp" />
     <ClCompile Include="CreditsState.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
@@ -159,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.hpp" />
+    <ClInclude Include="Coin.hpp" />
     <ClInclude Include="CreditsState.hpp" />
     <ClInclude Include="Definitions.hpp" />
     <ClInclude Include="Game.hpp" />
