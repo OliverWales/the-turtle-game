@@ -9,10 +9,10 @@
 #define TILE_SIZE 32
 
 #define LEVEL_WIDTH 100
-#define LEVEL_HEIGHT 50
+#define LEVEL_HEIGHT 60
 
 #define SPLASH_SCREEN "SplashScreen.png"
-#define SPLASH_SCREEN_TIME 1000
+#define SPLASH_SCREEN_TIME 1500
 
 // Main menu screen
 #define MAIN_MENU_BUTTONS "MainMenuButtons.png"
@@ -67,7 +67,10 @@ static int SETUP_MAP[160] = {
 };
 
 // Game Screen
+#define COIN_COUNT 100
 #define GAME_BUTTONS "GameButtons.png"
+#define COIN "Coin.png"
+#define DIGITS "Digits.png"
 
 #include <SFML/Graphics.hpp>
 

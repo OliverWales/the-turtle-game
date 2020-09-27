@@ -4,8 +4,11 @@
 #include "Game.hpp"
 #include "TileMap.hpp"
 #include "Turtle.hpp"
+#include "Coin.hpp"
 #include "Button.hpp"
 #include "MiniMap.hpp"
+#include "Number.hpp"
+#include <vector>
 
 class GameState : public State
 {
@@ -37,4 +40,15 @@ private:
 	Button _pause;
 
 	sf::RectangleShape _divider;
+
+	sf::Texture _coinTexture;
+	std::vector<Coin> _coins;
+	int _p1Coins = 0;
+	int _p2Coins = 0;
+
+	sf::Texture _digitsTexture;
+	Number _p1Score;
+	Number _p2Score;
+
+	void replaceCoin(Coin &coin);
 };
