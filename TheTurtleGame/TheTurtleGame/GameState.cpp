@@ -42,6 +42,20 @@ GameState::GameState(GameDataRef data) : _data(data)
     _divider.setPosition(sf::Vector2f(-1, -_divider.getSize().y / 2));
     _divider.setFillColor(sf::Color(0, 0, 0, 127));
 
+    // scores
+    if (!_digitsTexture.loadFromFile(DIGITS))
+    {
+        exit(EXIT_FAILURE);
+    }
+    
+    _p1Score.setTexture(_digitsTexture, sf::Vector2i(19, 26));
+    _p1Score.setPosition(sf::Vector2f(sf::Vector2i(- _uiView.getSize().x / 4, 2 - _uiView.getSize().y / 2)));
+    _p1Score.setValue(_p1Coins);
+
+    _p2Score.setTexture(_digitsTexture, sf::Vector2i(19, 26));
+    _p2Score.setPosition(sf::Vector2f(sf::Vector2i(_uiView.getSize().x / 4, 2 - _uiView.getSize().y / 2)));
+    _p2Score.setValue(_p2Coins);
+
     // minimap
     _miniMap = MiniMap<LEVEL_WIDTH + 1, LEVEL_HEIGHT + 1>();
     _miniMap.setTexture(_miniMapTexture);
@@ -121,13 +135,13 @@ void GameState::update(float dt)
         if (coin.collides(sf::Vector2f(_p1Turtle.Position.x + _p1TurtleTexture.getSize().x / 8, _p1Turtle.Position.y + _p1TurtleTexture.getSize().y / 2)))
         {
             _p1Coins++;
-            std::cout << "P1: " << _p1Coins << " P2: " << _p2Coins << std::endl;
+            _p1Score.setValue(_p1Coins);
             replaceCoin(coin);
         } 
         else if (coin.collides(sf::Vector2f(_p2Turtle.Position.x + _p2TurtleTexture.getSize().x / 8, _p2Turtle.Position.y + _p2TurtleTexture.getSize().y / 2)))
         {
             _p2Coins++;
-            std::cout << "P1: " << _p1Coins << " P2: " << _p2Coins << std::endl;
+            _p2Score.setValue(_p2Coins);
             replaceCoin(coin);
         }
     }
@@ -167,7 +181,7 @@ void GameState::draw()
     {
         _data->window.draw(coin);
     }
-
+    
     _data->window.draw(_tileMap);
 
     // UI
@@ -175,6 +189,8 @@ void GameState::draw()
     _data->window.draw(_divider);
     _data->window.draw(_miniMap);
     _data->window.draw(_home);
+    _data->window.draw(_p1Score);
+    _data->window.draw(_p2Score);
     //_data->window.draw(_pause);
 
     _data->window.display();

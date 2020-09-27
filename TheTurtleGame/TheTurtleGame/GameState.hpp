@@ -7,6 +7,7 @@
 #include "Coin.hpp"
 #include "Button.hpp"
 #include "MiniMap.hpp"
+#include "Number.hpp"
 #include <vector>
 
 class GameState : public State
@@ -42,8 +43,12 @@ private:
 
 	sf::Texture _coinTexture;
 	std::vector<Coin> _coins;
-	int _p1Coins;
-	int _p2Coins;
+	int _p1Coins = 0;
+	int _p2Coins = 0;
+
+	sf::Texture _digitsTexture;
+	Number _p1Score;
+	Number _p2Score;
 
 	void replaceCoin(Coin &coin);
 };

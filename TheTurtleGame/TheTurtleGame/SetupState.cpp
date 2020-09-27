@@ -45,7 +45,7 @@ SetupState::SetupState(GameDataRef data) : _data(data)
 	// player titles
 	int p1x = -100;
 	_p1Title.setTexture(_titlesTexture);
-	_p1Title.setTextureRect(sf::IntRect(0, 0, 120, 26));
+	_p1Title.setTextureRect(sf::IntRect(0, 0, 124, 26));
 	_p1Title.setPosition(p1x - 60, -80);
 
 	int p2x = 100;

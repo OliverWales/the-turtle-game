@@ -7,7 +7,7 @@ class ItemSelector : public sf::Drawable, public sf::Transformable
 public:
 	ItemSelector() {};
 
-	void setTexture(sf::Texture texture, sf::Vector2i size) {
+	void setTexture(sf::Texture& texture, sf::Vector2i size) {
 		itemTextures = texture;
 
 		for (int i = 0; i < N_ITEMS; i++)
@@ -18,6 +18,7 @@ public:
 		item.setTextureRect(frames[itemIndex]);
 		item.setTexture(itemTextures);
 	}
+
 
 	void setIndex(int index) {
 		itemIndex = index;

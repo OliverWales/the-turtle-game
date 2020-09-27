@@ -152,6 +152,7 @@
     <ClCompile Include="Keypad.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainMenuState.cpp" />
+    <ClCompile Include="Number.cpp" />
     <ClCompile Include="SetupState.cpp" />
     <ClCompile Include="SplashState.cpp" />
     <ClCompile Include="StateMachine.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="MapGenerator.hpp" />
     <ClInclude Include="Maths.hpp" />
     <ClInclude Include="MiniMap.hpp" />
+    <ClInclude Include="Number.hpp" />
     <ClInclude Include="SetupState.hpp" />
     <ClInclude Include="SplashState.hpp" />
     <ClInclude Include="State.hpp" />

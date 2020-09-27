@@ -70,6 +70,7 @@ static int SETUP_MAP[160] = {
 #define COIN_COUNT 100
 #define GAME_BUTTONS "GameButtons.png"
 #define COIN "Coin.png"
+#define DIGITS "Digits.png"
 
 #include <SFML/Graphics.hpp>
 
