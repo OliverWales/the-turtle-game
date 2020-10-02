@@ -6,6 +6,9 @@
 #include "CreditsState.hpp"
 #include "SetupState.hpp"
 
+#include <time.h>
+#include <sstream>
+
 MainMenuState::MainMenuState(GameDataRef data) : _data(data)
 {
 	_uiView = sf::View(sf::Vector2f(0, 0), sf::Vector2f(_data->window.getSize().x / PIXEL_SIZE, _data->window.getSize().y / PIXEL_SIZE));
@@ -61,9 +64,24 @@ void MainMenuState::update(float dt)
 			_data->window.close();
 		}
 
-		if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Escape)
+		if (event.type == sf::Event::KeyReleased)
 		{
-			_data->window.close();
+			if (event.key.code == sf::Keyboard::Escape)
+			{
+				_data->window.close();
+			}
+			else if (event.key.code == sf::Keyboard::P)
+			{
+				sf::Texture screenshot;
+				screenshot.create(_data->window.getSize().x, _data->window.getSize().y);
+				screenshot.update(_data->window);
+
+				std::string filename = "screenshot_" + std::to_string(time(NULL)) + ".png";
+				if (screenshot.copyToImage().saveToFile(filename))
+				{
+					std::cout << "Screenshot saved to " << filename << std::endl;
+				}
+			}
 		}
 
 		if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left)
