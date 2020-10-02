@@ -127,9 +127,24 @@ void SetupState::update(float dt)
 			_data->window.close();
 		}
 
-		if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Escape)
+		if (event.type == sf::Event::KeyReleased)
 		{
-			_data->window.close();
+			if (event.key.code == sf::Keyboard::Escape)
+			{
+				_data->window.close();
+			}
+			else if (event.key.code == sf::Keyboard::P)
+			{
+				sf::Texture screenshot;
+				screenshot.create(_data->window.getSize().x, _data->window.getSize().y);
+				screenshot.update(_data->window);
+
+				std::string filename = "screenshot_" + std::to_string(time(NULL)) + ".png";
+				if (screenshot.copyToImage().saveToFile(filename))
+				{
+					std::cout << "Screenshot saved to " << filename << std::endl;
+				}
+			}
 		}
 
 		if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left)
