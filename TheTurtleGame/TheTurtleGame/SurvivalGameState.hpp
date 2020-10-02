@@ -10,10 +10,10 @@
 #include "Number.hpp"
 #include <vector>
 
-class GameState : public State
+class SurvivalGameState : public State
 {
 public:
-	GameState(GameDataRef data);
+	SurvivalGameState(GameDataRef data);
 	void update(float dt);
 	void stepAnimation();
 	void draw();
@@ -41,14 +41,16 @@ private:
 
 	sf::RectangleShape _divider;
 
-	sf::Texture _coinTexture;
-	std::vector<Coin> _coins;
-	int _p1Coins = 0;
-	int _p2Coins = 0;
+	sf::Texture _fishTexture;
+	std::vector<Coin> _fish;
+	double _p1Health = 100;
+	double _p2Health = 100;
 
-	sf::Texture _digitsTexture;
-	Number _p1Score;
-	Number _p2Score;
+	sf::Texture _healthBackTexture;
+	sf::Sprite _p1HealthBack;
+	sf::Sprite _p2HealthBack;
+	sf::RectangleShape _p1HealthBar;
+	sf::RectangleShape _p2HealthBar;
 
-	void replaceCoin(Coin &coin);
+	void replaceCoin(Coin& coin);
 };

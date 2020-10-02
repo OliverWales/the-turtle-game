@@ -1,13 +1,14 @@
-#include "GameState.hpp"
+#include "ArcadeGameState.hpp"
 
 #include "Definitions.hpp"
 #include "MapGenerator.hpp"
 #include "MainMenuState.hpp"
+#include "GameOverState.hpp"
 #include <string>
 #include <time.h>
 #include <iostream>
 
-GameState::GameState(GameDataRef data) : _data(data)
+ArcadeGameState::ArcadeGameState(GameDataRef data) : _data(data)
 {
     // generate level
     srand(0);
@@ -101,7 +102,7 @@ GameState::GameState(GameDataRef data) : _data(data)
     }
 }
 
-void GameState::update(float dt)
+void ArcadeGameState::update(float dt)
 {
     sf::Event event;
     while (_data->window.pollEvent(event))
@@ -146,17 +147,28 @@ void GameState::update(float dt)
         }
     }
 
+    // check for winner
+    if (_p1Coins >= 100) {
+        // game over
+        _data->winner = 1;
+        _data->machine.replaceState(StateRef(new GameOverState(_data)));
+    } else if (_p2Coins >= 100) {
+        // game over
+        _data->winner = 1;
+        _data->machine.replaceState(StateRef(new GameOverState(_data)));
+    }
+
     _home.update(_data->window);
     _pause.update(_data->window);
 }
 
-void GameState::stepAnimation()
+void ArcadeGameState::stepAnimation()
 {
     _p1Turtle.stepAnimation();
     _p2Turtle.stepAnimation();
 }
 
-void GameState::draw()
+void ArcadeGameState::draw()
 {
     _data->window.clear(BACKGROUND_COLOUR);
 
@@ -196,7 +208,7 @@ void GameState::draw()
     _data->window.display();
 }
 
-void GameState::replaceCoin(Coin &coin) {
+void ArcadeGameState::replaceCoin(Coin &coin) {
     int x, y;
 
     do {

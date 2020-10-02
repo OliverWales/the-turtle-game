@@ -26,22 +26,28 @@ private:
 	sf::Sprite _p2Title;
 	sf::Sprite _p2Turtle;
 	sf::Sprite _p2Controls;
+	sf::Sprite _mode;
 
 	sf::Texture _keyboardTexture;
 	Keypad _p1Keys;
 	Keypad _p2Keys;
 
 	sf::Texture _buttonsTexture;
-	Button _back;
+	Button _home;
 	Button _p1Left;
 	Button _p1Right;
 	Button _p2Left;
 	Button _p2Right;
+	Button _modeLeft;
+	Button _modeRight;
 	Button _start;
 
 	sf::Texture _turtleSelectorTexture;
 	ItemSelector<4> _p1TurtleSelector;
 	ItemSelector<4> _p2TurtleSelector;
+
+	sf::Texture _modeSelectorTexture;
+	ItemSelector<2> _modeSelector;
 
 	int* _backgroundMap;
 	TileMap _backgroundTiles;

@@ -28,4 +28,9 @@ private:
 
 	int* _backgroundMap;
 	TileMap _backgroundTiles;
+
+	sf::Texture _coralTexture;
+	sf::Texture _weedTexture;
+	sf::Sprite _coral;
+	sf::Sprite _weed;
 };

@@ -17,6 +17,8 @@
 // Main menu screen
 #define MAIN_MENU_BUTTONS "MainMenuButtons.png"
 #define TITLE_BANNER "Title.png"
+#define CORAL "Coral1.png"
+#define WEED "Weed1.png"
 
 static int MAIN_MENU_MAP[160] = {
 	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
@@ -32,8 +34,9 @@ static int MAIN_MENU_MAP[160] = {
 };
  
 // Credits screen
-#define CREDITS_BUTTONS "SetupButtons.png"
+#define CREDITS_BUTTONS "CreditsButtons.png"
 #define CREDITS "Credits.png"
+
 static int CREDITS_MAP[160] = {
 	0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1,
 	0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1,
@@ -52,16 +55,17 @@ static int CREDITS_MAP[160] = {
 #define SETUP_TITLES "SetupTitles.png"
 #define TURTLE_SELECTOR "TurtleSelector.png"
 #define KEYBOARD_BUTTONS "KeyboardButtons.png"
+#define MODE_SELECTOR "ModeSelector.png"
 
 static int SETUP_MAP[160] = {
 	1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1,
-	1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
+	1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
 	1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 	1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 	1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
 	1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,
 	1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,
-	1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1,
+	1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,
 	1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 	1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 };
@@ -69,8 +73,12 @@ static int SETUP_MAP[160] = {
 // Game Screen
 #define COIN_COUNT 100
 #define GAME_BUTTONS "GameButtons.png"
+
 #define COIN "Coin.png"
 #define DIGITS "Digits.png"
+
+#define FISH "Fish.png"
+#define HEALTH_BAR_BACK "HealthBack.png"
 
 #include <SFML/Graphics.hpp>
 
@@ -80,3 +88,6 @@ static sf::Color* PLAYER_COLOURS[4] = {
 	new sf::Color(255, 0, 0),
 	new sf::Color(137, 201, 238)
 };
+
+#define GAME_OVER "GameOver.png"
+#define CROWN "Crown.png"

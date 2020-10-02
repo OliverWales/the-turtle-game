@@ -10,6 +10,8 @@ struct GameData
 
 	int player1Turtle = 0;
 	int player2Turtle = 1;
+	int mode = 0;
+	int winner = 0;
 };
 
 typedef std::shared_ptr<GameData> GameDataRef;
