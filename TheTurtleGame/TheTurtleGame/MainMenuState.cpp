@@ -33,6 +33,22 @@ MainMenuState::MainMenuState(GameDataRef data) : _data(data)
 	_backgroundMap = MapGenerator::marchingSquares<15, 9>(MAIN_MENU_MAP);
 	_backgroundTiles = TileMap::TileMap(TILE_SET, sf::Vector2u(TILE_SIZE, TILE_SIZE), _backgroundMap, 15, 9);
 	_backgroundTiles.setPosition(sf::Vector2f(-240, -135));
+
+	if (!_coralTexture.loadFromFile(CORAL))
+	{
+		exit(EXIT_FAILURE);
+	}
+
+	if (!_weedTexture.loadFromFile(WEED))
+	{
+		exit(EXIT_FAILURE);
+	}
+
+	_coral.setTexture(_coralTexture);
+	_weed.setTexture(_weedTexture);
+
+	_coral.setPosition(-346 / 2, 87);
+	_weed.setPosition(-282 / 2, 74);
 }
 
 void MainMenuState::update(float dt)
@@ -84,6 +100,8 @@ void MainMenuState::draw()
 
 	_data->window.setView(_uiView);
 	_data->window.draw(_backgroundTiles);
+	_data->window.draw(_coral);
+	_data->window.draw(_weed);
 
 	_data->window.draw(_title);
 	_data->window.draw(_play);

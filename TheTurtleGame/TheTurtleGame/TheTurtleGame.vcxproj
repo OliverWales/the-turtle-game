@@ -148,7 +148,8 @@
     <ClCompile Include="Coin.cpp" />
     <ClCompile Include="CreditsState.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="ArcadeGameState.cpp" />
+    <ClCompile Include="GameOverState.cpp" />
     <ClCompile Include="Keypad.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainMenuState.cpp" />
@@ -156,6 +157,7 @@
     <ClCompile Include="SetupState.cpp" />
     <ClCompile Include="SplashState.cpp" />
     <ClCompile Include="StateMachine.cpp" />
+    <ClCompile Include="SurvivalGameState.cpp" />
     <ClCompile Include="TileMap.cpp" />
     <ClCompile Include="Turtle.cpp" />
   </ItemGroup>
@@ -165,7 +167,8 @@
     <ClInclude Include="CreditsState.hpp" />
     <ClInclude Include="Definitions.hpp" />
     <ClInclude Include="Game.hpp" />
-    <ClInclude Include="GameState.hpp" />
+    <ClInclude Include="ArcadeGameState.hpp" />
+    <ClInclude Include="GameOverState.hpp" />
     <ClInclude Include="ItemSelector.hpp" />
     <ClInclude Include="Keypad.hpp" />
     <ClInclude Include="MainMenuState.hpp" />
@@ -173,12 +176,20 @@
     <ClInclude Include="Maths.hpp" />
     <ClInclude Include="MiniMap.hpp" />
     <ClInclude Include="Number.hpp" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="SetupState.hpp" />
     <ClInclude Include="SplashState.hpp" />
     <ClInclude Include="State.hpp" />
     <ClInclude Include="StateMachine.hpp" />
+    <ClInclude Include="SurvivalGameState.hpp" />
     <ClInclude Include="TileMap.hpp" />
     <ClInclude Include="Turtle.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon_256px.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
