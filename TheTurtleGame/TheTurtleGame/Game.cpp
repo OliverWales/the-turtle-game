@@ -6,6 +6,7 @@
 Game::Game(std::string title)
 {
 	_data->window.create(sf::VideoMode::getFullscreenModes()[0], title, sf::Style::Fullscreen);
+	_data->window.setVerticalSyncEnabled(true);
 	_data->machine.addState(StateRef(new SplashState(_data)));
 	run();
 }
