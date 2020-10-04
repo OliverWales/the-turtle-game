@@ -144,6 +144,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AnimatedSprite.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Coin.cpp" />
     <ClCompile Include="CreditsState.cpp" />
@@ -162,6 +163,7 @@
     <ClCompile Include="Turtle.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimatedSprite.hpp" />
     <ClInclude Include="Button.hpp" />
     <ClInclude Include="Coin.hpp" />
     <ClInclude Include="CreditsState.hpp" />

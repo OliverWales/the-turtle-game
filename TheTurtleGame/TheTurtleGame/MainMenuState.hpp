@@ -4,6 +4,7 @@
 #include "Game.hpp"
 #include "Button.hpp"
 #include "TileMap.hpp"
+#include "AnimatedSprite.hpp"
 
 class MainMenuState : public State
 {
@@ -31,6 +32,6 @@ private:
 
 	sf::Texture _coralTexture;
 	sf::Texture _weedTexture;
-	sf::Sprite _coral;
+	AnimatedSprite _coral;
 	sf::Sprite _weed;
 };
