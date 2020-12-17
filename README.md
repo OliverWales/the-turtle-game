@@ -1,5 +1,5 @@
 # The Turtle Game
-The Turtle Game is a competative two-player (shared keyboard) game written in C++ using SFML.
+The Turtle Game is a competetive two-player (shared keyboard) game written in C++ using SFML.
 
 ![Main Menu](https://raw.githubusercontent.com/OliverWales/the-turtle-game/master/Screenshots/MainMenu.png)
 
