@@ -1,11 +1,13 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "StateMachine.hpp"
 
 struct GameData
 {
 	sf::RenderWindow window;
+	sf::Music music;
 	StateMachine machine;
 
 	int player1Turtle = 0;

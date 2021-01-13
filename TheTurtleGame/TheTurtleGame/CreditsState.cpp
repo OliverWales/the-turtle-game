@@ -25,7 +25,7 @@ CreditsState::CreditsState(GameDataRef data) : _data(data)
 
 	// credits
 	_credits.setTexture(_creditsTexture);
-	_credits.setPosition(-132 / 2, -60);
+	_credits.setPosition(-132 / 2, -72);
 
 	// back
 	_back.setTexture(_buttonsTexture, sf::Vector2i(0, 0), sf::Vector2i(74, 28));

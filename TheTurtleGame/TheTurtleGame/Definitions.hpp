@@ -4,6 +4,8 @@
 #define PIXEL_SIZE 4 // screen pixels per game pixel
 #define TICK_TIME 200 // animation frame length in ms
 
+#define MUSIC "soundtrack.ogg"
+
 #define BACKGROUND_COLOUR sf::Color(70, 110, 175)
 #define TILE_SET "TileSet.png"
 #define TILE_SIZE 32

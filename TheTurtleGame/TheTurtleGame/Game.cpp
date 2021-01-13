@@ -8,6 +8,12 @@ Game::Game(std::string title)
 	_data->window.create(sf::VideoMode::getFullscreenModes()[0], title, sf::Style::Fullscreen);
 	_data->window.setVerticalSyncEnabled(true);
 	_data->machine.addState(StateRef(new SplashState(_data)));
+
+	if(!_data->music.openFromFile(MUSIC))
+	{
+		exit(EXIT_FAILURE);
+	}
+
 	run();
 }
 
@@ -15,6 +21,10 @@ void Game::run() {
 	float time = _clock.getElapsedTime().asMilliseconds();
 	float lastTime = 0.f;
 	float frameTime;
+
+	_data->music.setLoop(true);
+	_data->music.setVolume(50);
+	_data->music.play();
 
 	while (_data->window.isOpen())
 	{
