@@ -14,7 +14,7 @@ ArcadeGameState::ArcadeGameState(GameDataRef data) : _data(data)
     srand(0);
     _map = MapGenerator::generate<LEVEL_WIDTH + 1, LEVEL_HEIGHT + 1>(0.47, 4);
     _tiles = MapGenerator::marchingSquares<LEVEL_WIDTH, LEVEL_HEIGHT>(_map);
-    _tileMap = TileMap::TileMap(TILE_SET, sf::Vector2u(TILE_SIZE, TILE_SIZE), _tiles, LEVEL_WIDTH, LEVEL_HEIGHT);
+    _tileMap = TileMap(TILE_SET, sf::Vector2u(TILE_SIZE, TILE_SIZE), _tiles, LEVEL_WIDTH, LEVEL_HEIGHT);
 
     srand(time(NULL));
 
@@ -75,13 +75,13 @@ ArcadeGameState::ArcadeGameState(GameDataRef data) : _data(data)
     }
 
     _p1Turtle.setTexture(_p1TurtleTexture);
-    _p1Turtle.setPosition(sf::Vector2f(92, 150));
+    _p1Turtle.setPosition(sf::Vector2f(TILE_SIZE * 4, TILE_SIZE * 5));
     _p1Turtle.setKeys(sf::Keyboard::W, sf::Keyboard::S, sf::Keyboard::A, sf::Keyboard::D);
     _p1Turtle.setView(_p1View);
     _p1Turtle.faceRight();
 
     _p2Turtle.setTexture(_p2TurtleTexture);
-    _p2Turtle.setPosition(sf::Vector2f(TILE_SIZE * LEVEL_WIDTH - 150, 150));
+    _p2Turtle.setPosition(sf::Vector2f(TILE_SIZE * (LEVEL_WIDTH - 7.5), TILE_SIZE * 2.5));
     _p2Turtle.setKeys(sf::Keyboard::Up, sf::Keyboard::Down, sf::Keyboard::Left, sf::Keyboard::Right);
     _p2Turtle.setView(_p2View);
     _p2Turtle.faceLeft();

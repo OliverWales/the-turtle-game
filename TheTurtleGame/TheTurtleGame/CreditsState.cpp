@@ -20,7 +20,7 @@ CreditsState::CreditsState(GameDataRef data) : _data(data)
 
 	// background
 	_backgroundMap = MapGenerator::marchingSquares<15, 9>(CREDITS_MAP);
-	_backgroundTiles = TileMap::TileMap(TILE_SET, sf::Vector2u(TILE_SIZE, TILE_SIZE), _backgroundMap, 15, 9);
+	_backgroundTiles = TileMap(TILE_SET, sf::Vector2u(TILE_SIZE, TILE_SIZE), _backgroundMap, 15, 9);
 	_backgroundTiles.setPosition(sf::Vector2f(-240, -135));
 
 	// credits
